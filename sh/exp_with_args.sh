@@ -1,4 +1,4 @@
-WORKDIR="."
+WORKDIR="/root/codet5"
 export PYTHONPATH=$WORKDIR
 
 TASK=${1}
