@@ -20,7 +20,7 @@ def load_and_cache_gen_data_from_db(args, pool, tokenizer, split_tag, only_src=F
     cache_fn = '{}/{}.pt'.format(args.cache_path, split_tag + ('_src' if only_src else '') + data_tag)
 
     codes = connect_db().codes
-    examples = read_summarize_examples_from_db(codes, split_tag, args.sub_task)
+    examples = read_summarize_examples_from_db(codes, split_tag, args.sub_task, args.data_num)
     if is_sample:
         examples = random.sample(examples, min(5000, len(examples)))
     if split_tag == 'train':
