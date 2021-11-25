@@ -42,13 +42,13 @@ def find_all_by_tag(collection, tag):
 
 def read_summarize_examples_from_db(collection, split_tag, lang, data_num):
     """Read examples from mongodb with conditions."""
-
+    print('load data from db.')
     return_items = {'code_index': 1, 'code_tokens': 1, 'docstring_tokens': 1, '_id': 0}
     conditions = {'partition': split_tag, 'lang': lang}
 
     examples = []
     results = collection.find(conditions, return_items)
-    for result in results:
+    for result in tqdm(results):
         idx = result['code_index']
         code = ' '.join(result['code_tokens']).replace('\n', ' ')
         code = ' '.join(code.strip().split())
